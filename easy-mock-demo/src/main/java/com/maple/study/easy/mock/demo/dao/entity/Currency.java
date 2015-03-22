@@ -1,7 +1,5 @@
 package com.maple.study.easy.mock.demo.dao.entity;
 
-import java.io.IOException;
-
 import com.maple.study.easy.mock.demo.dao.ExchangeRate;
 
 public class Currency {

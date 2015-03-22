@@ -1,9 +1,9 @@
 package com.maple.study.easy.mock.demo;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.easymock.EasyMock;
-import org.hamcrest.core.AnyOf;
 import org.junit.Test;
 
 import com.maple.study.easy.mock.demo.dao.ExchangeRate;
