@@ -1,0 +1,35 @@
+<html> 
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head> 
+<script type="text/javascript"> 
+
+
+var DefaultOptions =
+{
+    "dict_disable": ["checked", false],
+    "ctrl_only": ["checked", false],
+    "english_only": ["checked", true]
+};
+
+var DictTranslate = {
+	"return-phrase": "",
+	"lang":"",
+	"translation": [],
+}
+var ColorsChanged = true;
+ 
+if (localStorage["ColorOptions"] == undefined)
+{
+    localStorage["ColorOptions"] = JSON.stringify(DefaultOptions);
+}
+
+
+var startupOptions = JSON.parse(localStorage["ColorOptions"]);
+
+alert(/hello/);
+
+</script> 
+</head> 
+<body> 
+</body> 
+</html>
