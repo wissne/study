@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "Unmi",
+    "name": "Only Search",
     "version": "1.9",
     "omnibox": {
         "keyword": "os"  //地址栏输入 u> 空格或 Tab 进入本模式
