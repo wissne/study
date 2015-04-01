@@ -29,7 +29,6 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 	url = text;
   }
   
-  // 找到当前 Tab, 并在当前 Tab 中打开相应的页面 
   chrome.tabs.getSelected(null, function(tab){
     // chrome.tabs.update(tab.id, {url: url});
 //	chrome.tabs.executeScript(null, {
