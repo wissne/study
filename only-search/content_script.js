@@ -1,2 +1,2 @@
 //alert( $("myKeyword").height() );
-alert( $("#myKeyword") );
+alert( $("#kw") );
