@@ -12,7 +12,7 @@ chrome.omnibox.onInputChanged.addListener(
  
 chrome.omnibox.onInputEntered.addListener(function(text) {
   var url;
-  var type="TR";
+  var type="DT";
   if(text.indexOf("TR=") == 0){
     url = text.substring(3);
 	type = "TR";
@@ -28,6 +28,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
   }else {
 	url = text;
   }
+  url=url.toLowerCase();
   
   chrome.tabs.getSelected(null, function(tab){
     // chrome.tabs.update(tab.id, {url: url});
@@ -35,10 +36,16 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 //		file: 'jquery-2.1.3.min.js'
 //	}, function(){
 		console.log("url:", url, "type:", type);
-		if (type) {
+		if (type == "DT") {
 			chrome.tabs.executeScript(null, {
 				allFrames: true,
-				code: 'var allObjects=document.getElementsByTagName("'+type+'");for(var i=0;i<allObjects.length;i++){allObjects[i].hidden=true;if (allObjects[i].innerHTML.indexOf("'+url+'")>0)allObjects[i].hidden=false;}'
+				code: 'var divObjects=document.getElementsByTagName("div");for(var i=0;i<divObjects.length;i++){divObjects[i].hidden=true;if(divObjects[i].innerHTML.toLowerCase().indexOf("'+url+'")>0)divObjects[i].hidden=false;}var trObjects=document.getElementsByTagName("tr");for(var i=0;i<trObjects.length;i++){trObjects[i].hidden=true;if(trObjects[i].innerHTML.toLowerCase().indexOf("'+url+'")>0)trObjects[i].hidden=false;}'
+			});
+		}
+		else if (type) {
+			chrome.tabs.executeScript(null, {
+				allFrames: true,
+				code: 'var allObjects=document.getElementsByTagName("'+type+'");for(var i=0;i<allObjects.length;i++){allObjects[i].hidden=true;if (allObjects[i].innerHTML.toLowerCase().indexOf("'+url+'")>0)allObjects[i].hidden=false;}'
 			});
 		} else {
 			chrome.tabs.update(tab.id, {url: url});
