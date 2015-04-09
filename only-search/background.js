@@ -3,7 +3,7 @@ chrome.omnibox.setDefaultSuggestion({description: "Only Search in current page"}
 chrome.omnibox.onInputChanged.addListener(
   function(text, suggest) {
     suggest([
-      {content: "TR="+text, description: "Search with TR " + text}, 
+      {content: "TR="+text, description: "Search with TR " + text},
       {content: "DIV="+text, description: "Search with DIV " + text},
       {content: "BaiDu="+text, description: "Search in Baidu " + text},
       {content: "Google="+text, description: "Search in Google " + text}
@@ -24,7 +24,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 	type = null;
   }else if(text.indexOf("Google=") == 0){
     url = "http://www.google.com/search?q=" + text.substring(7);
-	type = null;		
+	type = null;
   }else {
 	url = text;
   }
@@ -39,13 +39,13 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 		if (type == "DT") {
 			chrome.tabs.executeScript(null, {
 				allFrames: true,
-				code: 'var divObjects=document.getElementsByTagName("div");for(var i=0;i<divObjects.length;i++){divObjects[i].hidden=true;if(divObjects[i].innerHTML.toLowerCase().indexOf("'+url+'")>0)divObjects[i].hidden=false;}var trObjects=document.getElementsByTagName("tr");for(var i=0;i<trObjects.length;i++){trObjects[i].hidden=true;if(trObjects[i].innerHTML.toLowerCase().indexOf("'+url+'")>0)trObjects[i].hidden=false;}'
+				code: 'var divObjects=document.getElementsByTagName("div");for(var i=0;i<divObjects.length;i++){divObjects[i].hidden=true;if(divObjects[i].innerText.toLowerCase().indexOf("'+url+'")>0)divObjects[i].hidden=false;}var trObjects=document.getElementsByTagName("tr");for(var i=0;i<trObjects.length;i++){trObjects[i].hidden=true;if(trObjects[i].innerText.toLowerCase().indexOf("'+url+'")>0)trObjects[i].hidden=false;}'
 			});
 		}
 		else if (type) {
 			chrome.tabs.executeScript(null, {
 				allFrames: true,
-				code: 'var allObjects=document.getElementsByTagName("'+type+'");for(var i=0;i<allObjects.length;i++){allObjects[i].hidden=true;if (allObjects[i].innerHTML.toLowerCase().indexOf("'+url+'")>0)allObjects[i].hidden=false;}'
+				code: 'var allObjects=document.getElementsByTagName("'+type+'");for(var i=0;i<allObjects.length;i++){allObjects[i].hidden=true;if (allObjects[i].innerText.toLowerCase().indexOf("'+url+'")>0)allObjects[i].hidden=false;}'
 			});
 		} else {
 			chrome.tabs.update(tab.id, {url: url});
