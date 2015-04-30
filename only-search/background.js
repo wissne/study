@@ -8,9 +8,11 @@ chrome.omnibox.onInputChanged.addListener(
       {content: "BaiDu="+text, description: "Search in Baidu " + text},
       {content: "Google="+text, description: "Search in Google " + text}
     ]);
+
+	showSearchResult(text);
   });
  
-chrome.omnibox.onInputEntered.addListener(function(text) {
+function showSearchResult(text) {
   var url;
   var type="DT";
   if(text.indexOf("TR=") == 0){
@@ -54,4 +56,6 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 
   });
  
-});
+}
+
+chrome.omnibox.onInputEntered.addListener(showSearchResult);
