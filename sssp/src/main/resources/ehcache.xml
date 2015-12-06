@@ -1,0 +1,18 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         updateCheck="false">
+    <diskStore path="java.io.tmpdir" />
+    <!-- 缓存最大数目 -->
+    <!-- 缓存是否持久 -->
+    <!-- 是否保存到磁盘，当系统当机时 -->
+    <!-- 当缓存闲置n秒后销毁 --><!-- 是从内存转到硬盘的时间 -->
+    <!-- 当缓存存活n秒后销毁 -->
+    <defaultCache maxElementsInMemory="10000" eternal="false"
+                  overflowToDisk="true" timeToIdleSeconds="300" timeToLiveSeconds="180"
+                  diskPersistent="false" diskExpiryThreadIntervalSeconds="120" />
+
+    <!-- defaultCache标签定义了一个默认的Cache，这个Cache是不能删除的，否则会抛出No default cache is
+        configured异常。 另外，由于使用拦截器来刷新Cache内容，因此在定义cache生命周期时可以定义较大的数值 -->
+    <cache name="DEFAULT_CACHE" maxElementsInMemory="1000" eternal="false"
+           timeToIdleSeconds="0" timeToLiveSeconds="600000" overflowToDisk="true" />
+</ehcache>
